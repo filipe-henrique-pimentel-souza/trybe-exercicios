@@ -1,0 +1,43 @@
+/* Organize a #botoes para que ocupe a horizontal toda da tela, com padding de 10px, borda verde de 2px, e que seus elementos internos fiquem proporcionalmente espaçados*/
+#botoes {
+    width: 90%;
+    padding: 10px;
+    border: 2px solid green;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+/* Faça com que os botões tenham ocupem cada um uma linha*/
+#botoes button {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+/* Faça com que os h2 fique centralizados na horizontal  */
+h2 {
+    text-align: center;
+}
+
+/* justifique o texto <p> */
+p {
+    text-align: justify;
+}
+
+/* Faça com que os elementos de dentro do main ocupem apenas 80% da tela */
+main {
+    width: 80%;
+    margin: 0 auto;
+}
+/* Centralize os elementos de dentro do main */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Adicione espaçamento lateral nas sections */
+section {
+    margin: 0 50px;
+}
