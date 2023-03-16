@@ -1,30 +1,30 @@
-import './style.css';
+// Vamos importar nossa biblioteca
 import validator from 'validator';
 
-const inputName = document.getElementById('name');
-const inputValidador = document.getElementById('validador');
-const inputSelect = document.getElementById('select');
+// Aqui, vamos selecionar, pelos ids, os campos em nossa página
+const campoDeTexto = document.querySelector('#value');
+const button = document.querySelector('#button');
+const seletor = document.querySelector('#option');
+const textoDeSaida = document.querySelector('#answer');
 
-const validaEmail = () => {
-  inputValidador.removeEventListener('click', validaNumero);
-  inputValidador.addEventListener('click', () =>
-    console.log(validator.isEmail(inputName.value))
-  );
-};
+button.addEventListener('click', (event) => {
+  // Vamos usar o preventDefault() para evitar que, ao
+  // clicar no botão, ele recarregue a página
+  event.preventDefault();
 
-const validaNumero = () => {
-  inputValidador.removeEventListener('click', validaEmail);
-  inputValidador.addEventListener('click', () =>
-    console.log(validator.isFloat(inputName.value))
-  );
-};
+  // Aqui, criamos um objeto cujas chaves são os tipos a
+  // serem validados. Por exemplo, a chave CPF valida se
+  // o campoDeTexto.value é um CPF.
+  const campos = {
+    cpf: validator.isTaxID(campoDeTexto.value, 'pt-BR'),
+    hexColor: validator.isHexColor(campoDeTexto.value),
+    email: validator.isEmail(campoDeTexto.value),
+    uuid: validator.isUUID(campoDeTexto.value, 4),
+    url: validator.isURL(campoDeTexto.value),
+  };
 
-const qualValidacao = (qual) => {
-  if (qual === 'email') validaEmail();
-  if (qual === 'numero') validaNumero();
-  console.log(qual);
-};
-
-inputSelect.addEventListener('change', (event) => {
-  qualValidacao(event.target.value);
+  // O objeto 'campos' possui as chaves com o mesmo nome
+  // das opções do seletor em nossa página. Assim, podemos
+  // selecionar a chave de acordo com o selecionado no HTML
+  textoDeSaida.innerHTML = `A validação retornou ${campos[seletor.value]}`;
 });
